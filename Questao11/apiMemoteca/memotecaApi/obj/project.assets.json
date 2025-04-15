@@ -5649,11 +5649,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vanes\\Desktop\\angularBoot\\Questao11\\memotecaApi\\memotecaApi\\memotecaApi.csproj",
+      "projectUniqueName": "C:\\Users\\vanes\\Desktop\\angularBoot\\Questao11\\apiMemoteca\\memotecaApi\\memotecaApi.csproj",
       "projectName": "memotecaApi",
-      "projectPath": "C:\\Users\\vanes\\Desktop\\angularBoot\\Questao11\\memotecaApi\\memotecaApi\\memotecaApi.csproj",
+      "projectPath": "C:\\Users\\vanes\\Desktop\\angularBoot\\Questao11\\apiMemoteca\\memotecaApi\\memotecaApi.csproj",
       "packagesPath": "C:\\Users\\vanes\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vanes\\Desktop\\angularBoot\\Questao11\\memotecaApi\\memotecaApi\\obj\\",
+      "outputPath": "C:\\Users\\vanes\\Desktop\\angularBoot\\Questao11\\apiMemoteca\\memotecaApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
