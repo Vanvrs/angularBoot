@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status Usuario</title>
+</head>
+<body>
+  <div class="container mt-4">
+    <form [formGroup]="usuarioForm" class="form-box">
+      <h2>Verificação de Usuário</h2>
+
+      <div class="form-group mb-3">
+        <label>Nome *</label>
+        <input formControlName="nome" class="form-control" />
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Telefone *</label>
+        <input formControlName="telefone" type="tel" class="form-control" placeholder="(00) 00000-0000" />
+      </div>
+
+      <div class="d-flex gap-2">
+        <button type="button" (click)="verificarUsuario()" class="btn btn-primary">Verificar Usuário</button>
+        <button type="button" (click)="salvarUsuario()" class="btn btn-success">Salvar Usuário</button>
+      </div>
+
+      <!-- Alerta Condicional -->
+      <div *ngIf="usuarioAtivo !== null"
+           class="alert mt-3"
+           [ngClass]="usuarioAtivo ? 'alert-primary' : 'alert-danger'">
+        {{ usuarioAtivo ? 'Usuário está ativo, localzado em nossa base de dados.' : 'Usuário não está ativo, não localizado.' }}
+      </div>
+    </form>
+  </div>
+</body>
+</html>
+
