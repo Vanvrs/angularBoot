@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@angular/forms": "^19.2.6",
+    "ngx-mask": "^19.0.6"
+  },
+  "devDependencies": {
+    "typescript": "5.2"
+  }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container mt-5">
+
+    <!-- Inicio Formulário -->
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" novalidate>
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome completo</label>
+        <input type="text" class="form-control" id="nome" formControlName="nome"
+               [class.is-valid]="nome?.valid && (nome?.dirty || nome?.touched)"
+               [class.is-invalid]="nome?.invalid && (nome?.dirty || nome?.touched)">
+        <div class="valid-feedback" *ngIf="nome?.valid">
+          Nome válido!
+        </div>
+        <div class="invalid-feedback" *ngIf="nome?.hasError('required')">
+          O nome é obrigatório.
+        </div>
+        <div class="invalid-feedback" *ngIf="nome?.hasError('minlength')">
+          O nome deve ter pelo menos 3 caracteres.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email" class="form-control" id="email" formControlName="email"
+               [class.is-valid]="email?.valid && (email?.dirty || email?.touched)"
+               [class.is-invalid]="email?.invalid && (email?.dirty || email?.touched)">
+        <div class="valid-feedback" *ngIf="email?.valid">
+          E-mail válido!
+        </div>
+        <div class="invalid-feedback" *ngIf="email?.hasError('required')">
+          O e-mail é obrigatório.
+        </div>
+        <div class="invalid-feedback" *ngIf="email?.hasError('email')">
+          Por favor, insira um e-mail válido.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="telefone" class="form-label">Telefone</label>
+        <input type="tel" class="form-control" id="telefone" formControlName="telefone"
+               [class.is-valid]="telefone?.valid && (telefone?.dirty || telefone?.touched)"
+               [class.is-invalid]="telefone?.invalid && (telefone?.dirty || telefone?.touched)">
+        <div class="valid-feedback" *ngIf="telefone?.valid">
+          Telefone válido!
+        </div>
+        <div class="invalid-feedback" *ngIf="telefone?.hasError('required')">
+          O telefone é obrigatório.
+        </div>
+        <div class="invalid-feedback" *ngIf="telefone?.hasError('pattern')">
+          Por favor, insira um telefone válido (ex: (99) 99999-9999).
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="senha" class="form-label">Senha</label>
+        <input type="password" class="form-control" id="senha" formControlName="senha"
+               [class.is-valid]="senha?.valid && (senha?.dirty || senha?.touched)"
+               [class.is-invalid]="senha?.invalid && (senha?.dirty || senha?.touched)">
+        <div class="valid-feedback" *ngIf="senha?.valid">
+          Senha válida!
+        </div>
+        <!-- Requisitos de criação de senha -->
+        <div class="invalid-feedback">
+          <div *ngIf="senha?.hasError('required')">A senha é obrigatória.</div>
+          <div *ngIf="senha?.hasError('minlength')">A senha deve ter pelo menos 6 caracteres.</div>
+          <div *ngIf="senha?.hasError('pattern')">
+            A senha deve conter:
+            <ul class="mb-0">
+              <li>Pelo menos 1 letra maiúscula</li>
+              <li>Pelo menos 1 caractere especial (!&#64;#$&amp;*)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  <!-- validacoes de senha -->
+      <div class="mb-3">
+        <label for="confirmarSenha" class="form-label">Confirmar Senha</label>
+        <input type="password" class="form-control" id="confirmarSenha" formControlName="confirmarSenha"
+               [class.is-valid]="confirmarSenha?.valid && !formulario.hasError('senhasNaoCoincidem') && (confirmarSenha?.dirty || confirmarSenha?.touched)"
+               [class.is-invalid]="(confirmarSenha?.invalid || formulario.hasError('senhasNaoCoincidem')) && (confirmarSenha?.dirty || confirmarSenha?.touched)">
+        <div class="valid-feedback" *ngIf="confirmarSenha?.valid && !formulario.hasError('senhasNaoCoincidem')">
+          Senhas coincidem!
+        </div>
+        <div class="invalid-feedback">
+          <div *ngIf="confirmarSenha?.hasError('required')">Por favor, confirme sua senha.</div>
+          <div *ngIf="formulario.hasError('senhasNaoCoincidem') && confirmarSenha?.value">
+            As senhas não coincidem!
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">Enviar</button>
+    </form>
+  </div>
+
+</body>
+</html>
