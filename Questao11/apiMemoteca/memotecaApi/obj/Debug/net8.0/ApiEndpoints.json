@@ -1,0 +1,97 @@
+[
+  {
+    "ContainingType": "PensamentosAPI.Controllers.PensamentosController",
+    "Method": "ListarTodos",
+    "RelativePath": "api/pensamentos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PensamentosAPI.Controllers.PensamentosController",
+    "Method": "Inserir",
+    "RelativePath": "api/pensamentos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "PensamentosAPI.Dto.PensamentoInsercaoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PensamentosAPI.Controllers.PensamentosController",
+    "Method": "Atualizar",
+    "RelativePath": "api/pensamentos",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "PensamentosAPI.Dto.PensamentoAtualizacaoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PensamentosAPI.Controllers.PensamentosController",
+    "Method": "ObterPorId",
+    "RelativePath": "api/pensamentos/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PensamentosAPI.Controllers.PensamentosController",
+    "Method": "Excluir",
+    "RelativePath": "api/pensamentos/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PensamentosAPI.Controllers.PensamentosController",
+    "Method": "BuscarPensamentosPorPaginaAsync",
+    "RelativePath": "api/pensamentos/{pagina}/{quantidade}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pagina",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "quantidade",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
