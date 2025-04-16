@@ -1,21 +1,16 @@
 <section class="container">
+
     <header class="header d-flex">
-      
         <h2 class="ff-inter">{{titulo}}</h2>
         <div class="botoes">
-
             <button routerLink="/criarPensamento" class="botao">Novo pensamento</button>
-
         </div>
     </header>
-
         <div *ngFor="let pensamento of listaPensamentos">
             <app-pensamento
                 [pensamento]="pensamento"
-
                 ></app-pensamento>
         </div>
-
 </section>
 
 <ng-template #semPensamentos>
