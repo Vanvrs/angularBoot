@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 
 import { Pensamento } from '../../app/components/pensamentos/pensamento';
 import { Observable } from 'rxjs';
@@ -9,9 +9,17 @@ import { Observable } from 'rxjs';
 })
 export class PensamentoService {
 
-  private readonly API = 'https://localhost:7074'
+  private readonly API = 'https://localhost:7074/pensamentos';
+  private readonly httOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }),
+    withCredentials: true // Se estiver usando autenticação
+  };
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient) {  }
 
   listar(pagina: number, filtro: string, pensamentos: string): Observable<Pensamento[]> {
     const itensPorPagina = 6;
@@ -57,3 +65,5 @@ export class PensamentoService {
     return this.http.get<Pensamento>(url)
   }
 }
+
+
