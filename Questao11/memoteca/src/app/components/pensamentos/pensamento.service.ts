@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class PensamentoService {
 
-  private readonly API = 'https://memoteca-api.herokuapp.com/pensamentos'
+  private readonly API = 'https://localhost:7074'
 
   constructor(private http: HttpClient) { }
 
