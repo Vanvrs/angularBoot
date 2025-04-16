@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http'
 
-import { Pensamento } from '../components/pensamentos/pensamento';
+import { Pensamento } from '../../app/components/pensamentos/pensamento';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class PensamentoService {
 
-  private readonly API = 'https://localhost:7074/pensamento'
+  private readonly API = 'https://localhost:7074'
 
   constructor(private http: HttpClient) { }
 
-  listar(pagina: number, filtro: string, favoritos: boolean): Observable<Pensamento[]> {
+  listar(pagina: number, filtro: string, pensamentos: string): Observable<Pensamento[]> {
     const itensPorPagina = 6;
 
     let params = new HttpParams()
@@ -24,11 +24,12 @@ export class PensamentoService {
       params = params.set("q", filtro)
     }
 
-    if(favoritos) {
-      params = params.set("favorito", true)
+    if(pensamentos) {
+      params = params.set("pensamentoDoAutor", true)
     }
 
-    return this.http.get<Pensamento[]>(this.API, { params })
+    return this.http
+      .get<Pensamento[]>(this.API, { params })
   }
 
   criar(pensamento: Pensamento): Observable<Pensamento> {
@@ -40,8 +41,8 @@ export class PensamentoService {
     return this.http.put<Pensamento>(url, pensamento)
   }
 
-  mudarFavorito(pensamento: Pensamento): Observable<Pensamento> {
-    pensamento.favorito = !pensamento.favorito
+  mudarPensamento(pensamento: Pensamento): Observable<Pensamento> {
+    pensamento.pensamentoDoAutor = !pensamento.pensamentoDoAutor
     const url = `${this.API}/${pensamento.id}`
     return this.http.put<Pensamento>(url, pensamento)
   }

@@ -12,10 +12,9 @@ export class ExcluirPensamentoComponent implements OnInit {
 
   pensamento: Pensamento = {
     id: 0,
-    conteudo: '',
-    autoria: '',
-    modelo: '',
-    favorito: false
+    pensamentoDoAutor:  true,
+    nomeAutor: '',
+    modelo: ''
   }
   constructor(
     private service: PensamentoService,
