@@ -21,6 +21,7 @@ titulo: any;
     this.service.listar().subscribe({
       next: (pensamentos) => {
         this.listaPensamentos = pensamentos;
+        console.log("teste", this.listaPensamentos)
       },
       error: (err) => {
         console.error('Erro ao carregar pensamentos:', err);

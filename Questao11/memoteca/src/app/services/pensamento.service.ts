@@ -53,22 +53,3 @@ excluir(id: number): Observable<Pensamento> {
 }
 
 
-/* @Injectable({
-  providedIn: 'root'
-})
-export class PensamentoService {
-  private readonly API = 'sua-api-aqui';
-
-  constructor(private http: HttpClient) { }
-
-  buscarPorId(id: number): Observable<Pensamento> {
-    return this.http.get<Pensamento>(`${this.API}/${id}`);
-  }
-
-  excluir(id: number): Observable<Pensamento> {
-    return this.http.delete<Pensamento>(`${this.API}/${id}`);
-  }
-
-  // ... outros métodos
-}
- */
