@@ -38,9 +38,9 @@ export class CriarPensamentoComponent implements OnInit {
                          this.formulario.value.modelo === 'modelo2' ? 2 : 3;
 
       const pensamento = {
-        PensamentoDoAutor: this.formulario.value.pensamentoDoAutor,
-        NomeAutor: this.formulario.value.nomeAutor,
-        Modelo: modeloNumero
+        pensamentoDoAutor: this.formulario.value.pensamentoDoAutor,
+        nomeAutor: this.formulario.value.nomeAutor,
+        modelo: modeloNumero
       };
 
       this.service.criar(pensamento).subscribe(() => {

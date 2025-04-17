@@ -3,14 +3,14 @@
   <h1 class="mural-title">Meu Mural</h1>
 
   <div class="thoughts-container">
-    <div *ngFor="let pensamento of listaPensamentos" class="thought-card" [ngClass]="'model' + pensamento.Modelo">
-      <img class="quote-icon" [src]="'../../../../assets/Imgs/' + pensamento.Modelo + '.png'" alt="Ícone de aspas">
+    <div *ngFor="let pensamento of listaPensamentos" class="thought-card" [ngClass]="'model' + pensamento.modelo">
+      <img class="quote-icon" [src]="'../../../../assets/Imgs/modelo' + pensamento.modelo + '.png'" alt="Ícone de aspas">
 
-      <p class="thought-content">{{pensamento.PensamentoDoAutor}}</p>
+      <p class="thought-content">{{pensamento.pensamentoDoAutor}}</p>
 
       <div class="author-section">
         <div class="divider"></div>
-        <p class="author-name">{{pensamento.NomeAutor}}</p>
+        <p class="author-name">{{pensamento.nomeAutor}}</p>
       </div>
 
       <div class="actions">

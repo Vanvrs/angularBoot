@@ -10,8 +10,8 @@ import { Pensamento } from '../pensamento';
 export class PensamentoComponent {
   @Input() pensamento: Pensamento = {
     id: 0,
-    PensamentoDoAutor: '',
-    NomeAutor: '',
-    Modelo: 0,
+    pensamentoDoAutor: '',
+    nomeAutor: '',
+    modelo: 0,
   };
-} 
+}
