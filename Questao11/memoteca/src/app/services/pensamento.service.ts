@@ -18,7 +18,7 @@ export class PensamentoService {
 
 
 listar(): Observable<Pensamento[]> {
-  
+
       return this.http.get<Pensamento[]>(this.API);
     }
 
@@ -47,12 +47,28 @@ editar(pensamento: Pensamento): Observable<Pensamento> {
   const url = `${this.API}/${pensamento.id}`;
   return this.http.put<Pensamento>(url, pensamento);
 }
-  excluir(id: number): Observable<any> {
-    const url = `${this.API}/${id}`;
-    return this.http.delete(url);
+excluir(id: number): Observable<Pensamento> {
+  return this.http.delete<Pensamento>(`${this.API}/${id}`);
+}
+}
+
+
+/* @Injectable({
+  providedIn: 'root'
+})
+export class PensamentoService {
+  private readonly API = 'sua-api-aqui';
+
+  constructor(private http: HttpClient) { }
+
+  buscarPorId(id: number): Observable<Pensamento> {
+    return this.http.get<Pensamento>(`${this.API}/${id}`);
   }
 
+  excluir(id: number): Observable<Pensamento> {
+    return this.http.delete<Pensamento>(`${this.API}/${id}`);
+  }
 
+  // ... outros métodos
 }
-//conexao
-//listar-pensamento.component.t
+ */

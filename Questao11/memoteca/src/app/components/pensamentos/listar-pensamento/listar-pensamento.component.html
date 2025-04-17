@@ -1,45 +1,10 @@
-<!--
-
- <div class="mural-container">
-  <div class="header">
-    <h1 class="mural-title">{{titulo}}</h1>
-    <button class="new-thought-btn" routerLink="/criarPensamento">
-      <img src="assets/imagens/plus-icon.png" alt="Novo pensamento">
-      Novo Pensamento
-    </button>
-  </div>
-
-  <div class="thoughts-grid">
-    <div *ngFor="let pensamento of listaPensamentos" class="thought-card" [ngClass]="'model-' + pensamento.Modelo">
-      <img class="model-icon" [src]="'assets/imagens/modelo' + pensamento.Modelo + '.png'" [alt]="'Modelo ' + pensamento.Modelo">
-
-      <p class="thought-text">{{pensamento.PensamentoDoAutor}}</p>
-
-      <div class="author-container">
-        <div class="divider-line"></div>
-        <p class="author-name">{{pensamento.NomeAutor}}</p>
-      </div>
-
-      <div class="actions">
-        <button class="edit-btn" [routerLink]="['/pensamento/editarPensamento', pensamento.id]">
-          <img src="assets/imagens/edit-icon.png" alt="Editar">
-        </button>
-        <button class="delete-btn" [routerLink]="['/pensamento/excluirPensamento', pensamento.id]">
-          <img src="assets/imagens/trash-icon.png" alt="Excluir">
-        </button>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
 
 <div class="mural-container">
   <h1 class="mural-title">Meu Mural</h1>
 
   <div class="thoughts-container">
-    <div *ngFor="let pensamento of listaPensamentos" class="thought-card" [ngClass]="'model-' + pensamento.Modelo">
-      <img class="quote-icon" [src]="'assets/images/modelo' + pensamento.Modelo + '.png'" alt="Ícone de aspas">
+    <div *ngFor="let pensamento of listaPensamentos" class="thought-card" [ngClass]="'model' + pensamento.Modelo">
+      <img class="quote-icon" [src]="'../../../../assets/Imgs/' + pensamento.Modelo + '.png'" alt="Ícone de aspas">
 
       <p class="thought-content">{{pensamento.PensamentoDoAutor}}</p>
 
@@ -50,10 +15,10 @@
 
       <div class="actions">
         <button class="edit-btn" [routerLink]="['/pensamento/editarPensamento', pensamento.id]">
-          <img src="assets/images/edit-icon.png" alt="Editar">
+          <img src="../../../../assets/Imgs/icone-editar.png" alt="Editar">
         </button>
         <button class="delete-btn" [routerLink]="['/pensamento/excluirPensamento', pensamento.id]">
-          <img src="assets/images/delete-icon.png" alt="Excluir">
+          <img src="../../../../assets/Imgs/icone-excluir.png" alt="Excluir">
         </button>
       </div>
     </div>
@@ -61,8 +26,8 @@
 
   <div class="new-thought-container">
     <button class="new-thought-btn" routerLink="/criarPensamento">
-      <img src="assets/images/plus-icon-white.png" alt="+">
       Novo Pensamento
     </button>
   </div>
 </div>
+

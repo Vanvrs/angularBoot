@@ -57,15 +57,13 @@ const routes: Routes = [
     path: 'criarPensamento',
     component: CriarPensamentoComponent
   },
-  {
-    path: 'pensamentos/excluirPensamento/:id',
-    component: ExcluirPensamentoComponent
-  },
+  { path: 'pensamento/excluirPensamento/:id', component: ExcluirPensamentoComponent },
   {
     path: 'pensamentos/editarPensamento/:id',
     component: EditarPensamentosComponent
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
