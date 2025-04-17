@@ -1,8 +1,8 @@
-import { PensamentoService } from '../../../services/pensamento.service';
-import { Pensamento } from './../pensamento';
+
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PensamentoService } from '../../../services/pensamento.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-criar-pensamento',
@@ -10,7 +10,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./criar-pensamento.component.scss']
 })
 export class CriarPensamentoComponent implements OnInit {
-
   formulario!: FormGroup;
 
   constructor(
@@ -21,38 +20,43 @@ export class CriarPensamentoComponent implements OnInit {
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
-      conteudo: ['', Validators.compose([
+      pensamentoDoAutor: ['', Validators.compose([
         Validators.required,
         Validators.pattern(/(.|\s)*\S(.|\s)*/)
       ])],
-      autoria: ['', Validators.compose([
+      nomeAutor: ['', Validators.compose([
         Validators.required,
         Validators.minLength(3)
       ])],
-      modelo: ['modelo1'],
-      favorito: [false]
-    })
+      modelo: ['modelo1']
+    });
   }
 
   criarPensamento() {
-    console.log(this.formulario.get('conteudo')?.errors)
-    if(this.formulario.valid){
-      this.service.criar(this.formulario.value).subscribe(() => {
-        this.router.navigate(['/listarPensamento'])
-      })
+    if (this.formulario.valid) {
+      const modeloNumero = this.formulario.value.modelo === 'modelo1' ? 1 :
+                         this.formulario.value.modelo === 'modelo2' ? 2 : 3;
+
+      const pensamento = {
+        PensamentoDoAutor: this.formulario.value.pensamentoDoAutor,
+        NomeAutor: this.formulario.value.nomeAutor,
+        Modelo: modeloNumero
+      };
+
+      this.service.criar(pensamento).subscribe(() => {
+        this.router.navigate(['/listarPensamento']);
+      });
     }
   }
 
   cancelarPensamento() {
-    this.router.navigate(['/listarPensamento'])
+    this.router.navigate(['/listarPensamento']);
   }
 
   habilitarBotao(): string {
-    if(this.formulario.valid) {
-      return 'botao'
-    } else {
-      return 'botao__desabilitado'
-    }
+    return this.formulario.valid ? 'botao' : 'botao__desabilitado';
   }
-
 }
+
+
+

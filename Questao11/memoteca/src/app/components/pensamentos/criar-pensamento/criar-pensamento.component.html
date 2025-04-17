@@ -1,21 +1,36 @@
- <section class="container criar-pensamentos ff-inter">
-    <header class="header">
-        <h2>Adicione um <br> pensamento novo:</h2>
-    </header>
-    <form [formGroup]="formulario">
-        <label for="pensamento">Pensamento</label>
-        <input type="textarea" class="input" id="pensamento" formControlName="conteudo" placeholder="Digite o pensamento">
-        <div class="mensagem__erro" *ngIf="this.formulario.get('conteudo')?.errors?.['required']  && formulario.get('conteudo')?.touched">
-            É preciso escrever um pensamento
-        </div>
-        <label for="autoria">Autoria ou fonte</label>
-        <input type="text"  class="input" id="autoria" formControlName="autoria"  placeholder="Digite a autoria ou fonte">
-        <div class="mensagem__erro" *ngIf="this.formulario.get('autoria')?.errors?.['required'] && formulario.get('autoria')?.touched">
-            É preciso escrever uma autoria
-        </div>
-        <div class="mensagem__erro" *ngIf="this.formulario.get('autoria')?.errors?.['minlength']">
-            Minimo de 3 letras para a autoria
-        </div>
+<section class="container criar-pensamentos ff-inter">
+  <header class="header">
+      <h2>Adicione um <br> pensamento novo:</h2>
+  </header>
+  <form [formGroup]="formulario">
+      <label for="pensamento">Pensamento</label>
+      <input type="textarea" class="input" id="pensamento"
+             formControlName="pensamentoDoAutor"
+             placeholder="Digite o pensamento">
+      <div class="mensagem__erro"
+           *ngIf="formulario.get('pensamentoDoAutor')?.errors?.['required'] &&
+                  formulario.get('pensamentoDoAutor')?.touched">
+          É preciso escrever um pensamento
+      </div>
+      <div class="mensagem__erro"
+           *ngIf="formulario.get('pensamentoDoAutor')?.errors?.['pattern']">
+          O pensamento não pode ser vazio
+      </div>
+
+      <label for="nomeAutor">Autoria ou fonte</label>
+      <input type="text" class="input" id="nomeAutor"
+             formControlName="nomeAutor"
+             placeholder="Digite a autoria ou fonte">
+
+      <div class="mensagem__erro"
+           *ngIf="formulario.get('nomeAutor')?.errors?.['required'] &&
+                  formulario.get('nomeAutor')?.touched">
+          É preciso escrever uma autoria
+      </div>
+      <div class="mensagem__erro"
+           *ngIf="formulario.get('nomeAutor')?.errors?.['minlength']">
+          Mínimo de 3 letras para a autoria
+      </div>
 
             <label for="modelo">Selecione o modelo do card:</label>
 
@@ -31,8 +46,8 @@
                     Prévia:
                     <div class="modelo modelo1 ff-roboto-mono">
                         <img src="../../../../assets/Imgs/modelo1.png" alt="Aspas azuis">
-                        <p class="conteudo">{{ formulario.get('conteudo')?.value }}</p>
-                        <p class="autoria"><strong>{{ formulario.get('autoria')?.value }}</strong></p>
+                        <p class="pensamentoDoAutor">{{ formulario.get('pensamentoDoAutor')?.value }}</p>
+                        <p class="nomeAutor"><strong>{{ formulario.get('nomeAutor')?.value }}</strong></p>
                     </div>
                 </div>
 
@@ -47,8 +62,8 @@
                     Prévia:
                     <div class="modelo modelo2 ff-roboto-mono">
                         <img src="../../../../assets/Imgs/modelo2.png" alt="Aspas azul claro">
-                        <p class="conteudo">{{ formulario.get('conteudo')?.value }}</p>
-                        <p class="autoria"><strong>{{ formulario.get('autoria')?.value }}</strong></p>
+                        <p class="pensamentoDoAutor">{{ formulario.get('pensamentoDoAutor')?.value }}</p>
+                        <p class="nomeAutor"><strong>{{ formulario.get('nomeAutor')?.value }}</strong></p>
                     </div>
                 </div>
 
@@ -63,19 +78,21 @@
                     Prévia:
                     <div class="modelo modelo3 ff-roboto-mono">
                         <img src="../../../../assets/Imgs/modelo3.png" alt="Aspas verdes">
-                        <p class="conteudo">{{ formulario.get('conteudo')?.value }}</p>
-                        <p class="autoria"><strong>{{ formulario.get('autoria')?.value }}</strong></p>
+                        <p class="pensamentoDoAutor">{{ formulario.get('pensamentoDoAutor')?.value }}</p>
+                        <p class="nomeAutor"><strong>{{ formulario.get('nomeAutor')?.value }}</strong></p>
                     </div>
                 </div>
             </div>
-            <div class="acoes">
-                <button
-                    [disabled]="!formulario.valid"
-                    (click)="criarPensamento()"
-                    [ngClass]="habilitarBotao()"
-                    >Salvar</button>
-                <button (click)="cancelarPensamento()" class="botao">Cancelar</button>
-            </div>
+      <div class="acoes">
+              <button [disabled]="!formulario.valid"
+                      (click)="criarPensamento()"
+                      [ngClass]="habilitarBotao()">
+                  Salvar
+              </button>
+              <button (click)="cancelarPensamento()" class="botao">Cancelar</button>
+          </div>
 
     </form>
 </section>
+
+

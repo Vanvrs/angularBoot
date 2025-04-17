@@ -10,20 +10,20 @@
           id="pensamento"
           name="pensamento"
           placeholder="Digite o pensamento"
-          formControlName="conteudo"
+          formControlName="pensamentoDoAutor"
             >
-        <label for="autoria">Autoria ou fonte</label>
+        <label for="nomeAutor">Autoria ou fonte</label>
         <input type="text"
           class="input"
-          id="autoria"
-          name="autoria"
+          id="nomeAutor"
+          name="nomeAutor"
           placeholder="Digite a autoria ou fonte"
-          formControlName="autoria"
+          formControlName="nomeAutor"
             >
-        <div class="mensagem__erro" *ngIf="this.formulario.get('autoria')?.errors?.['required'] && this.formulario.get('autoria')?.touched">
+        <div class="mensagem__erro" *ngIf="this.formulario.get('nomeAutor')?.errors?.['required'] && this.formulario.get('nomeAutor')?.touched">
             Por favor insira um autor
         </div>
-        <div class="mensagem__erro" *ngIf="this.formulario.get('autoria')?.errors?.['minlength'] && this.formulario.get('autoria')?.touched">
+        <div class="mensagem__erro" *ngIf="this.formulario.get('nomeAutor')?.errors?.['minlength'] && this.formulario.get('nomeAutor')?.touched">
             Minimo de 3 letras
         </div>
             <label for="modelo">Selecione o modelo do card:</label>
@@ -46,8 +46,8 @@
                     Prévia:
                     <div class="modelo modelo1 ff-roboto-mono">
                         <img src="../../../../assets/Imgs/modelo1.png" alt="Aspas azuis">
-                        <p class="conteudo">{{formulario.get('conteudo')?.value}}</p>
-                        <p class="autoria"><strong>{{formulario.get('autoria')?.value}}</strong></p>
+                        <p class="pensamentoDoAutor">{{formulario.get('pensamentoDoAutor')?.value}}</p>
+                        <p class="nomeAutor"><strong>{{formulario.get('nomeAutor')?.value}}</strong></p>
                     </div>
                 </div>
 
@@ -67,8 +67,8 @@
                     Prévia:
                     <div class="modelo modelo2 ff-roboto-mono">
                         <img src="../../../../assets/Imgs/modelo2.png" alt="Aspas azul claro">
-                        <p class="conteudo">{{formulario.get('conteudo')?.value}}</p>
-                        <p class="autoria"><strong>{{formulario.get('autoria')?.value}}</strong></p>
+                        <p class="pensamentoDoAutor">{{formulario.get('pensamentoDoAutor')?.value}}</p>
+                        <p class="nomeAutor"><strong>{{formulario.get('nomeAutor')?.value}}</strong></p>
                     </div>
                 </div>
 
@@ -88,8 +88,8 @@
                     Prévia:
                     <div class="modelo modelo3 ff-roboto-mono">
                         <img src="../../../../assets/Imgs/modelo3.png" alt="Aspas verdes">
-                        <p class="conteudo">{{formulario.get('conteudo')?.value}}</p>
-                        <p class="autoria"><strong>{{formulario.get('autoria')?.value}}</strong></p>
+                        <p class="pensamentoDoAutor">{{formulario.get('pensamentoDoAutor')?.value}}</p>
+                        <p class="nomeAutor"><strong>{{formulario.get('nomeAutor')?.value}}</strong></p>
                     </div>
                 </div>
 

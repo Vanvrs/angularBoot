@@ -1,7 +1,7 @@
-export interface Pensamento {
-    id?: number
-    pensamentoDoAutor: boolean
-    nomeAutor: string
-    modelo: string
 
+export interface Pensamento {
+  id?: number;
+  PensamentoDoAutor: string;
+  NomeAutor: string;
+  Modelo: string | number ;
 }

@@ -1,7 +1,6 @@
-import { Router } from '@angular/router';
+/* import { Component, OnInit } from '@angular/core';
 import { PensamentoService } from '../../../services/pensamento.service';
-import { Pensamento } from './../pensamento';
-import { Component, Input, OnInit } from '@angular/core';
+import { Pensamento } from '../pensamento';
 
 @Component({
   selector: 'app-listar-pensamento',
@@ -9,61 +8,67 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./listar-pensamento.component.scss']
 })
 export class ListarPensamentoComponent implements OnInit {
-
   listaPensamentos: Pensamento[] = [];
- /*  buscarPensamentos: Pensamento[] = []; */
   paginaAtual: number = 1;
-  /* haMaisPensamentos: boolean = true; */
-  filtro: string = ''
-  pensamentoDoAutor: string = ''
-  listaPensmaento: Pensamento[] = [];
-  titulo: string = 'Meu Mural';
+  filtro: string = '';
+  titulo: string = 'Meu Mural'
 
-  constructor(private service: PensamentoService, private router: Router) { }
+  constructor(private service: PensamentoService) {}
 
   ngOnInit(): void {
-    this.service.listar(this.paginaAtual, this.filtro, this.pensamentoDoAutor).subscribe((listaPensamentos) => {
-      this.listaPensamentos = listaPensamentos
-    })
+    this.carregarPensamentos();
+
+
   }
 
-  /* carregarMaisPensamentos() {
-    this.service.listar(++this.paginaAtual, this.filtro, this.pensamentoDoAutor)
-      .subscribe(listaPensamentos => {
-        this.listaPensamentos.push(...listaPensamentos);
-        if(!listaPensamentos.length) {
-          this.haMaisPensamentos = false;
-        }
-      })
-  } */
 
- /*  pesquisarPensamentos() {
-    this.haMaisPensamentos = true;
-    this.paginaAtual = 1;
-    this.service.listar(this.paginaAtual, this.filtro, this.pensamentoDoAutor)
-      .subscribe(listaPensamentos => {
-        this.listaPensamentos = listaPensamentos
-      })
-  } */
+carregarPensamentos() {
+    this.service.listar().subscribe({
+      next: (pensamentos) => {
+        console.log('Pensamentos recebidos:', pensamentos);
+        // Garante que o Modelo é string para o binding
+        this.listaPensamentos = pensamentos.map(p => ({
+          ...p,
+          Modelo: p.Modelo.toString()
+        }));
+      },
+      error: (err) => {
+        console.error('Erro completo:', err);
+        this.listaPensamentos = [];
+      }
+    });
 
-  /* recarregarComponent() {
-    this.paginaAtual = 1;
-    this.pensamentoDoAutor = '';
 
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = 'reload'
-    this.router.navigate([this.router.url])
-  } */
+  }}
 
-  /* listarFavoritos() {
-    this.titulo = 'Meus Favoritos'
-    this.pensamentoDoAutor = '';
-    this.haMaisPensamentos = true;
-    this.paginaAtual = 1;
-    this.service.listar(this.paginaAtual, this.filtro, this.pensamentoDoAutor)
-      .subscribe(listaPensamentosFavoritos => {
-        this.listaPensamentos = listaPensamentosFavoritos
+ */
 
- /*      }) */
+  import { Component, OnInit } from '@angular/core';
+import { PensamentoService } from '../../../services/pensamento.service';
+import { Pensamento } from '../pensamento';
 
+@Component({
+  selector: 'app-listar-pensamento',
+  templateUrl: './listar-pensamento.component.html',
+  styleUrls: ['./listar-pensamento.component.scss']
+})
+export class ListarPensamentoComponent implements OnInit {
+  listaPensamentos: Pensamento[] = [];
+
+  constructor(private service: PensamentoService) { }
+
+  ngOnInit(): void {
+    this.carregarPensamentos();
+  }
+
+  carregarPensamentos() {
+    this.service.listar().subscribe({
+      next: (pensamentos) => {
+        this.listaPensamentos = pensamentos;
+      },
+      error: (err) => {
+        console.error('Erro ao carregar pensamentos:', err);
+      }
+    });
+  }
 }

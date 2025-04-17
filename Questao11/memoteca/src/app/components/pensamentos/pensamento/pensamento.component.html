@@ -1,10 +1,11 @@
- <div class="pensamento {{pensamento.modelo}} ff-roboto-mono" >
-    <img src="../../../../assets/Imgs/{{pensamento.modelo}}.png" alt="aspas coloridas">
-    <p class="pensamentoDoAutor">{{pensamento.pensamentoDoAutor}}</p>
-    <p class="nomeAutor"><strong>{{pensamento.nomeAutor}}</strong></p>
+<div class="pensamento {{pensamento.Modelo}} ff-roboto-mono" >
+   <img src="../../../../assets/Imgs/{{pensamento.Modelo}}.png" alt="aspas coloridas">
+
+    <p class="pensamentoDoAutor">{{pensamento.PensamentoDoAutor}}</p>
+    <p class="nomeAutor"><strong>{{pensamento.NomeAutor}}</strong></p>
     <div class="acoes">
 
-        <button class="botao-editar">
+       <button class="botao-editar">
             <img src="../../../../assets/Imgs/icone-editar.png" routerLink="/pensamento/editarPensamento/{{pensamento.id}}" alt="Ícone de edição">
         </button>
         <button class="botao-excluir" routerLink="/pensamento/excluirPensamento/{{pensamento.id}}">
@@ -12,3 +13,56 @@
         </button>
     </div>
 </div>
+
+
+ <!-- <div class="pensamento modelo-{{pensamento.Modelo}} ff-roboto-mono">
+
+
+  <img class="imagem-modelo"
+       src="assets/Imgs/modelo{{pensamento.Modelo}}.png"
+       alt="Modelo {{pensamento.Modelo}}">
+
+
+  <div class="conteudo-pensamento">
+      <p class="pensamento-texto">{{pensamento.PensamentoDoAutor}}</p>
+      <p class="autor"><strong>{{pensamento.NomeAutor}}</strong></p>
+  </div>
+
+
+  <div class="acoes">
+      <button class="botao-editar" [routerLink]="['/pensamento/editarPensamento', pensamento.id]">
+          <img src="assets/Imgs/icone-editar.png" alt="Ícone de edição">
+      </button>
+      <button class="botao-excluir" [routerLink]="['/pensamento/excluirPensamento', pensamento.id]">
+          <img src="assets/Imgs/icone-excluir.png" alt="Ícone de excluir">
+      </button>
+  </div>
+</div> -->
+<!--
+<div class="pensamento-card" [ngClass]="'modelo-' + pensamento.Modelo">
+  <div class="card-content">
+    <img class="modelo-icon"
+     [src]="'assets/Imgs/modelo' + pensamento.Modelo + '.png'"
+     [alt]="'Modelo ' + pensamento.Modelo">
+
+    <div class="texto-container">
+      <p class="pensamento-texto">{{pensamento.PensamentoDoAutor}}</p>
+
+      <div class="autor-container">
+        <div class="linha-divisoria"></div>
+        <p class="autor-nome">{{pensamento.NomeAutor}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-actions">
+    <button class="action-btn editar" [routerLink]="['/pensamento/editarPensamento', pensamento.id]">
+      <img src="../../../../assets/Imgs/icone-editar.png" alt="Editar">
+    </button>
+    <button class="action-btn excluir" [routerLink]="['/pensamento/excluirPensamento', pensamento.id]">
+      <img src="../../../../assets/Imgs/icone-excluir.png" alt="Excluir">
+    </button>
+  </div>
+</div>
+
+ -->

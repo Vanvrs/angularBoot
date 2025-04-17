@@ -1,69 +1,58 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
-
-import { Pensamento } from '../../app/components/pensamentos/pensamento';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
+import { Pensamento } from '../components/pensamentos/pensamento';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PensamentoService {
 
-  private readonly API = 'https://localhost:7074/pensamentos';
-  private readonly httOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }),
-    withCredentials: true // Se estiver usando autenticação
-  };
-
-
-  constructor(private http: HttpClient) {  }
-
-  listar(pagina: number, filtro: string, pensamentos: string): Observable<Pensamento[]> {
-    const itensPorPagina = 6;
-
-    let params = new HttpParams()
-      .set("_page", pagina)
-      .set("_limit", itensPorPagina)
-
-    if(filtro.trim().length > 2) {
-      params = params.set("q", filtro)
-    }
-
-    if(pensamentos) {
-      params = params.set("pensamentoDoAutor", true)
-    }
-
-    return this.http
-      .get<Pensamento[]>(this.API, { params })
-  }
-
-  criar(pensamento: Pensamento): Observable<Pensamento> {
-    return this.http.post<Pensamento>(this.API, pensamento)
-  }
-
-  editar(pensamento: Pensamento): Observable<Pensamento> {
-    const url = `${this.API}/${pensamento.id}`
-    return this.http.put<Pensamento>(url, pensamento)
-  }
-
-  mudarPensamento(pensamento: Pensamento): Observable<Pensamento> {
-    pensamento.pensamentoDoAutor = !pensamento.pensamentoDoAutor
-    const url = `${this.API}/${pensamento.id}`
-    return this.http.put<Pensamento>(url, pensamento)
-  }
-
-  excluir(id: number): Observable<Pensamento> {
+  buscarPorId(id: number) : Observable<Pensamento> {
     const url = `${this.API}/${id}`;
-    return this.http.delete<Pensamento>(url)
+    return this.http.get<Pensamento>(url);
+  }
+  private readonly API = 'https://localhost:7074/pensamentos';
+
+  constructor(private http: HttpClient) { }
+
+
+listar(): Observable<Pensamento[]> {
+  
+      return this.http.get<Pensamento[]>(this.API);
+    }
+
+/* listar(pagina: number, filtro: string): Observable<Pensamento[]> {
+    let params = new HttpParams()
+      .set('_page', pagina.toString())
+      .set('_limit', '6');
+
+    if (filtro.trim().length > 0) {
+      params = params.set('q', filtro);
+    }
+
+    return this.http.get<Pensamento[]>(this.API, { params });
+  }  */
+
+  criar(pensamento: any): Observable<any> {
+    return this.http.post(this.API, {
+      PensamentoDoAutor: pensamento.PensamentoDoAutor,
+      NomeAutor: pensamento.NomeAutor,
+      Modelo: pensamento.Modelo,
+
+    });
   }
 
-  buscarPorId(id: number): Observable<Pensamento> {
-    const url = `${this.API}/${id}`
-    return this.http.get<Pensamento>(url)
-  }
+editar(pensamento: Pensamento): Observable<Pensamento> {
+  const url = `${this.API}/${pensamento.id}`;
+  return this.http.put<Pensamento>(url, pensamento);
 }
+  excluir(id: number): Observable<any> {
+    const url = `${this.API}/${id}`;
+    return this.http.delete(url);
+  }
 
 
+}
+//conexao
+//listar-pensamento.component.t

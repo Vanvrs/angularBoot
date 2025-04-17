@@ -12,9 +12,10 @@ export class ExcluirPensamentoComponent implements OnInit {
 
   pensamento: Pensamento = {
     id: 0,
-    pensamentoDoAutor:  true,
-    nomeAutor: '',
-    modelo: ''
+    PensamentoDoAutor: '',
+    NomeAutor: '',
+    Modelo: 0,
+
   }
   constructor(
     private service: PensamentoService,
@@ -23,10 +24,10 @@ export class ExcluirPensamentoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id')
-    this.service.buscarPorId(parseInt(id!)).subscribe((pensamento) => {
-      this.pensamento = pensamento
-    })
+    const id = this.route.snapshot.paramMap.get('id');
+    this.service.buscarPorId(parseInt(id!)).subscribe((pensamento: Pensamento) => {
+      this.pensamento = pensamento;
+    });
   }
 
   excluirPensamento() {
