@@ -36,9 +36,9 @@ listar(): Observable<Pensamento[]> {
 
   criar(pensamento: any): Observable<any> {
     return this.http.post(this.API, {
-      PensamentoDoAutor: pensamento.PensamentoDoAutor,
-      NomeAutor: pensamento.NomeAutor,
-      Modelo: pensamento.Modelo,
+      pensamentoDoAutor: pensamento.pensamentoDoAutor,
+      nomeAutor: pensamento.nomeAutor,
+      modelo: pensamento.modelo,
 
     });
   }
