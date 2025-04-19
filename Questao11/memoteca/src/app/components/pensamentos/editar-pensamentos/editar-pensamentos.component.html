@@ -1,4 +1,4 @@
-<section class="container editar-pensamentos ff-inter">
+<!-- <section class="container editar-pensamentos ff-inter">
     <header class="header">
         <h2>Adicione um <br> pensamento novo:</h2>
     </header>
@@ -100,4 +100,85 @@
             </div>
 
     </form>
+</section> -->
+
+
+<!-- src/app/components/pensamentos/editar-pensamentos/editar-pensamentos.component.html -->
+<section class="container editar-pensamentos ff-inter">
+  <header class="header">
+    <h2>Editar Pensamento</h2>
+  </header>
+
+  <form [formGroup]="formulario" (ngSubmit)="salvarEdicao()">
+    <label for="pensamento">Pensamento</label>
+    <textarea
+      class="input"
+      id="pensamento"
+      name="pensamento"
+      placeholder="Digite o pensamento"
+      formControlName="pensamentoDoAutor"
+      rows="4"
+    ></textarea>
+
+    <div class="mensagem__erro"
+         *ngIf="formulario.get('pensamentoDoAutor')?.errors?.['required'] &&
+                formulario.get('pensamentoDoAutor')?.touched">
+      Por favor insira um pensamento
+    </div>
+
+    <label for="nomeAutor">Autoria ou fonte</label>
+    <input type="text"
+      class="input"
+      id="nomeAutor"
+      name="nomeAutor"
+      placeholder="Digite a autoria ou fonte"
+      formControlName="nomeAutor">
+
+    <div class="mensagem__erro"
+         *ngIf="formulario.get('nomeAutor')?.errors?.['required'] &&
+                formulario.get('nomeAutor')?.touched">
+      Por favor insira um autor
+    </div>
+    <div class="mensagem__erro"
+         *ngIf="formulario.get('nomeAutor')?.errors?.['minlength'] &&
+                formulario.get('nomeAutor')?.touched">
+      Mínimo de 3 letras
+    </div>
+
+    <label for="modelo">Selecione o modelo do card:</label>
+
+    <div class="container-radio">
+      <div class="radio-modelo" *ngFor="let modelo of modelos">
+        <label [for]="'modelo' + modelo.valor">
+          <input
+            type="radio"
+            [id]="'modelo' + modelo.valor"
+            [value]="modelo.valor"
+            formControlName="modelo"
+          >
+          <div class="custom-radio">
+            <span></span>
+          </div>
+          <span>{{modelo.label}}</span>
+        </label>
+        Prévia:
+        <div class="modelo {{'modelo' + modelo.valor}} ff-roboto-mono">
+          <img [src]="'../../../../assets/Imgs/modelo' + modelo.valor + '.png'"
+               [alt]="'Aspas do ' + modelo.label">
+          <p class="pensamentoDoAutor">{{formulario.get('pensamentoDoAutor')?.value || 'Seu pensamento aqui'}}</p>
+          <p class="nomeAutor"><strong>{{formulario.get('nomeAutor')?.value || 'Autor'}}</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- editar-pensamentos.component.html -->
+    <div class="botoes">
+      <button type="submit" [disabled]="!formulario.valid || carregando">
+        {{ carregando ? 'Salvando...' : 'Salvar' }}
+      </button>
+
+      <button type="button" (click)="cancelar()">Cancelar</button>
+    </div>
+
+  </form>
 </section>

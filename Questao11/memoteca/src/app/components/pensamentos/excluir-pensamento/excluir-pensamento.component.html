@@ -1,4 +1,4 @@
- <div class="excluir-container">
+<!--  <div class="excluir-container">
   <h2>Excluir Pensamento</h2>
 
   <div class="pensamento-card">
@@ -18,4 +18,45 @@
     <button class="btn-cancelar" (click)="cancelar()">Cancelar</button>
     <button class="btn-excluir" (click)="excluirPensamento()">Excluir</button>
   </div>
+</div>
+ -->
+
+
+
+<!-- src/app/components/pensamentos/excluir-pensamento/excluir-pensamento.component.html -->
+<div class="excluir-container">
+  <h2>Excluir Pensamento</h2>
+
+  <div class="pensamento-card">
+    <div class="card-content">
+      <img [src]="'../../../../assets/Imgs/modelo' + pensamento.modelo + '.png'"
+           alt="Ícone do modelo" class="modelo-icon">
+
+      <div class="texto-container">
+        <p class="pensamento-texto">{{ pensamento.pensamentoDoAutor }}</p>
+
+        <div class="autor-container">
+          <div class="linha-divisoria"></div>
+          <p class="autor-nome">{{ pensamento.nomeAutor }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="confirmacao">
+    <p>Tem certeza que deseja excluir este pensamento?</p>
+    <p>Esta ação não pode ser desfeita.</p>
+  </div>
+
+  <div class="acoes">
+    <button class="btn-cancelar" (click)="cancelar()">Cancelar</button>
+    <button class="btn-excluir" (click)="modalAberto = true">Excluir</button>
+  </div>
+
+  <app-modal-confirmacao
+    [aberto]="modalAberto"
+    titulo="Confirmar Exclusão"
+    mensagem="Você tem certeza que deseja excluir este pensamento permanentemente?"
+    (confirmado)="handleConfirmacao($event)">
+  </app-modal-confirmacao>
 </div>

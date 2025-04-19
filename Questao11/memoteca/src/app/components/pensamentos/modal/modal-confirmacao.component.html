@@ -1,0 +1,11 @@
+<!-- src/app/components/pensamentos/modal-confirmacao/modal-confirmacao.component.html -->
+<div class="modal-overlay" *ngIf="aberto">
+  <div class="modal-container">
+    <h2>{{ titulo }}</h2>
+    <p>{{ mensagem }}</p>
+    <div class="modal-actions">
+      <button class="btn-cancelar" (click)="cancelar()">Cancelar</button>
+      <button class="btn-confirmar" (click)="confirmar()">Confirmar</button>
+    </div>
+  </div>
+</div>

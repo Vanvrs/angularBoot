@@ -1,5 +1,4 @@
-/*
-import { ActivatedRoute, Router } from '@angular/router';
+/* import { ActivatedRoute, Router } from '@angular/router';
 import { PensamentoService } from '../../../services/pensamento.service';
 import { Component, OnInit } from '@angular/core';
 import { Pensamento } from '../pensamento';
@@ -12,9 +11,9 @@ import { Pensamento } from '../pensamento';
 export class ExcluirPensamentoComponent implements OnInit {
   pensamento: Pensamento = {
     id: 0,
-    PensamentoDoAutor: '',
-    NomeAutor: '',
-    Modelo: 0
+    pensamentoDoAutor: '',
+    nomeAutor: '',
+    modelo: 0
   }
 
   constructor(
@@ -45,9 +44,11 @@ export class ExcluirPensamentoComponent implements OnInit {
  */
 
 
+
+
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PensamentoService } from '../../../services/pensamento.service';
-import { Component, OnInit } from '@angular/core';
 import { Pensamento } from '../pensamento';
 
 @Component({
@@ -61,7 +62,8 @@ export class ExcluirPensamentoComponent implements OnInit {
     pensamentoDoAutor: '',
     nomeAutor: '',
     modelo: 0
-  }
+  };
+  modalAberto: boolean = false;
 
   constructor(
     private service: PensamentoService,
@@ -74,6 +76,13 @@ export class ExcluirPensamentoComponent implements OnInit {
     this.service.buscarPorId(parseInt(id!)).subscribe((pensamento) => {
       this.pensamento = pensamento;
     });
+  }
+
+  handleConfirmacao(confirmado: boolean) {
+    if (confirmado) {
+      this.excluirPensamento();
+    }
+    this.modalAberto = false;
   }
 
   excluirPensamento() {

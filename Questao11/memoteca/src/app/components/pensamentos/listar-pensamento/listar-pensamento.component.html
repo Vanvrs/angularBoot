@@ -1,33 +1,58 @@
-
+<!--
 <div class="mural-container">
   <h1 class="mural-title">Meu Mural</h1>
-
-  <div class="thoughts-container">
-    <div *ngFor="let pensamento of listaPensamentos" class="thought-card" [ngClass]="'model' + pensamento.modelo">
-      <img class="quote-icon" [src]="'../../../../assets/Imgs/modelo' + pensamento.modelo + '.png'" alt="Ícone de aspas">
-
-      <p class="thought-content">{{pensamento.pensamentoDoAutor}}</p>
-
-      <div class="author-section">
-        <div class="divider"></div>
-        <p class="author-name">{{pensamento.nomeAutor}}</p>
-      </div>
-
-      <div class="actions">
-        <button class="edit-btn" [routerLink]="['/pensamento/editarPensamento', pensamento.id]">
-          <img src="../../../../assets/Imgs/icone-editar.png" alt="Editar">
-        </button>
-        <button class="delete-btn" [routerLink]="['/pensamento/excluirPensamento', pensamento.id]">
-          <img src="../../../../assets/Imgs/icone-excluir.png" alt="Excluir">
-        </button>
-      </div>
-    </div>
-  </div>
 
   <div class="new-thought-container">
     <button class="new-thought-btn" routerLink="/criarPensamento">
       Novo Pensamento
     </button>
   </div>
-</div>
 
+  <div class="thoughts-container">
+    <app-pensamento
+      *ngFor="let pensamento of listaPensamentos"
+      [pensamento]="pensamento"
+      (onExcluir)="prepararExclusao($event)"
+      class="thought-card">
+    </app-pensamento>
+  </div>
+
+  <app-modal-confirmacao
+    [aberto]="modalAberto"
+    titulo="Confirmar Exclusão"
+    [mensagem]="'Você tem certeza que deseja excluir o pensamento de ' + (pensamentoParaExcluir?.nomeAutor || '') + '?'"
+    (confirmado)="confirmarExclusao($event)">
+  </app-modal-confirmacao>
+</div> -->
+
+
+
+
+
+<!-- src/app/components/pensamentos/listar-pensamento/listar-pensamento.component.html -->
+<div class="mural-container">
+  <h1 class="mural-title">Meu Mural</h1>
+
+  <div class="new-thought-container">
+    <button class="new-thought-btn" routerLink="/criarPensamento">
+      Novo Pensamento
+    </button>
+  </div>
+
+  <div class="thoughts-container">
+    <app-pensamento
+      *ngFor="let pensamento of listaPensamentos"
+      [pensamento]="pensamento"
+      (onExcluir)="pensamento.id && prepararExclusao(pensamento.id)"
+      (onEditar)="pensamento.id && editarPensamento(pensamento.id)"
+      class="thought-card">
+    </app-pensamento>
+  </div>
+
+  <app-modal-confirmacao
+    [aberto]="modalAberto"
+    titulo="Confirmar Exclusão"
+    mensagem="Você tem certeza que deseja excluir este pensamento permanentemente?"
+    (confirmado)="confirmarExclusao($event)">
+  </app-modal-confirmacao>
+</div>
