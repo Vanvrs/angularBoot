@@ -2,7 +2,7 @@
   <header class="header">
       <h2>Adicione um <br> pensamento novo:</h2>
   </header>
-  <form [formGroup]="formulario">
+  <form [formGroup]="formulario" (ngSubmit)="criarPensamento()">
       <label for="pensamento">Pensamento</label>
       <input type="textarea" class="input" id="pensamento"
              formControlName="pensamentoDoAutor"
@@ -83,14 +83,12 @@
                     </div>
                 </div>
             </div>
-      <div class="acoes">
-              <button [disabled]="!formulario.valid"
-                      (click)="criarPensamento()"
-                      [ngClass]="habilitarBotao()">
-                  Salvar
+            <div class="acoes">
+              <button type="submit" [disabled]="!formulario.valid || carregando" [ngClass]="habilitarBotao()">
+                {{ carregando ? 'Salvando...' : 'Salvar' }}
               </button>
-              <button (click)="cancelarPensamento()" class="botao">Cancelar</button>
-          </div>
+              <button type="button" (click)="cancelarPensamento()" class="botao">Cancelar</button>
+            </div>
 
     </form>
 </section>

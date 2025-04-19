@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PensamentoService } from '../../../services/pensamento.service';
@@ -11,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class CriarPensamentoComponent implements OnInit {
   formulario!: FormGroup;
+  carregando: boolean = false;
 
   constructor(
     private service: PensamentoService,
@@ -19,6 +19,10 @@ export class CriarPensamentoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.inicializarFormulario();
+  }
+
+  inicializarFormulario() {
     this.formulario = this.formBuilder.group({
       pensamentoDoAutor: ['', Validators.compose([
         Validators.required,
@@ -33,7 +37,9 @@ export class CriarPensamentoComponent implements OnInit {
   }
 
   criarPensamento() {
-    if (this.formulario.valid) {
+    if (this.formulario.valid && !this.carregando) {
+      this.carregando = true;
+
       const modeloNumero = this.formulario.value.modelo === 'modelo1' ? 1 :
                          this.formulario.value.modelo === 'modelo2' ? 2 : 3;
 
@@ -43,8 +49,15 @@ export class CriarPensamentoComponent implements OnInit {
         modelo: modeloNumero
       };
 
-      this.service.criar(pensamento).subscribe(() => {
-        this.router.navigate(['/listarPensamento']);
+      this.service.criar(pensamento).subscribe({
+        next: () => {
+          this.router.navigate(['/listarPensamento']);
+        },
+        error: (erro) => {
+          console.error('Erro ao criar:', erro);
+          this.carregando = false;
+          alert('Erro ao criar pensamento. Verifique o console.');
+        }
       });
     }
   }
@@ -57,6 +70,3 @@ export class CriarPensamentoComponent implements OnInit {
     return this.formulario.valid ? 'botao' : 'botao__desabilitado';
   }
 }
-
-
-

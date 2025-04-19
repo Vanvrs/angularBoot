@@ -76,11 +76,19 @@ export class PensamentoService {
     );
   }
 
-  criar(pensamento: Pensamento): Observable<Pensamento> {
-    return this.http.post<Pensamento>(this.API, pensamento).pipe(
+  criar(pensamento: any): Observable<Pensamento> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post<Pensamento>(this.API, pensamento, { headers }).pipe(
       catchError(error => {
-        console.error('Erro ao criar pensamento:', error);
-        return of({} as Pensamento);
+        console.error('Erro ao criar pensamento:', {
+          status: error.status,
+          message: error.message,
+          error: error.error
+        });
+        return throwError(() => new Error('Erro ao criar pensamento'));
       })
     );
   }
@@ -121,7 +129,7 @@ export class PensamentoService {
         })
       );
     }
-  
+
 
   excluir(id: number): Observable<Pensamento> {
     const url = `${this.API}/${id}`;
