@@ -1,5 +1,4 @@
-<!--
-<div class="mural-container">
+<!-- <div class="mural-container">
   <h1 class="mural-title">Meu Mural</h1>
 
   <div class="new-thought-container">
@@ -12,7 +11,8 @@
     <app-pensamento
       *ngFor="let pensamento of listaPensamentos"
       [pensamento]="pensamento"
-      (onExcluir)="prepararExclusao($event)"
+      (onExcluir)="pensamento.id && prepararExclusao(pensamento.id)"
+      (onEditar)="pensamento.id && editarPensamento(pensamento.id)"
       class="thought-card">
     </app-pensamento>
   </div>
@@ -20,16 +20,14 @@
   <app-modal-confirmacao
     [aberto]="modalAberto"
     titulo="Confirmar Exclusão"
-    [mensagem]="'Você tem certeza que deseja excluir o pensamento de ' + (pensamentoParaExcluir?.nomeAutor || '') + '?'"
+    mensagem="Você tem certeza que deseja excluir este pensamento permanentemente?"
     (confirmado)="confirmarExclusao($event)">
   </app-modal-confirmacao>
-</div> -->
+</div>
+ -->
 
+ <!-- listar-pensamento.component.html -->
 
-
-
-
-<!-- src/app/components/pensamentos/listar-pensamento/listar-pensamento.component.html -->
 <div class="mural-container">
   <h1 class="mural-title">Meu Mural</h1>
 
@@ -47,6 +45,49 @@
       (onEditar)="pensamento.id && editarPensamento(pensamento.id)"
       class="thought-card">
     </app-pensamento>
+  </div>
+
+  <!-- Controles de paginação -->
+  <div class="paginacao" *ngIf="totalPaginas > 1">
+    <button
+      class="pagina-btn"
+      (click)="mudarPagina(1)"
+      [disabled]="paginaAtual === 1">
+      &laquo;
+    </button>
+
+    <button
+      class="pagina-btn"
+      (click)="mudarPagina(paginaAtual - 1)"
+      [disabled]="paginaAtual === 1">
+      &lsaquo;
+    </button>
+
+    <button
+      *ngFor="let pagina of paginas"
+      class="pagina-btn"
+      [class.ativa]="pagina === paginaAtual"
+      (click)="mudarPagina(pagina)">
+      {{pagina}}
+    </button>
+
+    <button
+      class="pagina-btn"
+      (click)="mudarPagina(paginaAtual + 1)"
+      [disabled]="paginaAtual === totalPaginas">
+      &rsaquo;
+    </button>
+
+    <button
+      class="pagina-btn"
+      (click)="mudarPagina(totalPaginas)"
+      [disabled]="paginaAtual === totalPaginas">
+      &raquo;
+    </button>
+  </div>
+
+  <div class="info-paginacao">
+    Página {{paginaAtual}} de {{totalPaginas}} | Total: {{totalItens}} pensamentos
   </div>
 
   <app-modal-confirmacao

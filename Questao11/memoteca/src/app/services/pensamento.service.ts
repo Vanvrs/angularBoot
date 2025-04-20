@@ -1,47 +1,4 @@
-/* import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { catchError, Observable, of, tap } from 'rxjs';
-import { Pensamento } from '../components/pensamentos/pensamento';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class PensamentoService {
-
-  buscarPorId(id: number) : Observable<Pensamento> {
-    const url = `${this.API}/${id}`;
-    return this.http.get<Pensamento>(url);
-  }
-  private readonly API = 'https://localhost:7074/pensamentos';
-
-  constructor(private http: HttpClient) { }
-
-
-listar(): Observable<Pensamento[]> {
-
-      return this.http.get<Pensamento[]>(this.API);
-    }
-
-  criar(pensamento: any): Observable<any> {
-    return this.http.post(this.API, {
-      pensamentoDoAutor: pensamento.pensamentoDoAutor,
-      nomeAutor: pensamento.nomeAutor,
-      modelo: pensamento.modelo,
-
-    });
-  }
-
-editar(pensamento: Pensamento): Observable<Pensamento> {
-  const url = `${this.API}/${pensamento.id}`;
-  return this.http.put<Pensamento>(url, pensamento);
-}
-excluir(id: number): Observable<Pensamento> {
-  return this.http.delete<Pensamento>(`${this.API}/${id}`);
-}
-}
- */
-
-// src/app/services/pensamento.service.ts
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
@@ -93,20 +50,7 @@ export class PensamentoService {
     );
   }
 
-  /* editar(pensamento: Pensamento): Observable<Pensamento> {
-    if (!pensamento.id) {
-      return throwError(() => new Error('ID do pensamento é necessário para edição'));
-    }
 
-    const url = `${this.API}/${pensamento.id}`;
-    return this.http.put<Pensamento>(url, pensamento).pipe(
-      tap(response => console.log('Resposta da API:', response)),
-      catchError(error => {
-        console.error('Erro na requisição PUT:', error);
-        return throwError(() => error);
-      })
-    );
-  } */
 
     editar(pensamento: Pensamento): Observable<Pensamento> {
       const url = `${this.API}/${pensamento.id}`;
@@ -140,4 +84,15 @@ export class PensamentoService {
       })
     );
   }
+  // pensamento.service.ts
+
+listarPaginado(pagina: number, itensPorPagina: number): Observable<{ totalItens: number, paginaAtual: number, itensPorPagina: number, itens: Pensamento[] }> {
+  const url = `${this.API}/${pagina}/${itensPorPagina}`;
+  return this.http.get<{ totalItens: number, paginaAtual: number, itensPorPagina: number, itens: Pensamento[] }>(url).pipe(
+    catchError(error => {
+      console.error('Erro ao carregar pensamentos paginados:', error);
+      return of({ totalItens: 0, paginaAtual: 1, itensPorPagina: 6, itens: [] });
+    })
+  );
+}
 }
