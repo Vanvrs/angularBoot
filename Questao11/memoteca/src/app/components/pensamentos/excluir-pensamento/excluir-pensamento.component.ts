@@ -25,20 +25,22 @@ export class ExcluirPensamentoComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
+  //Método do ciclo de vida que é executado quando o componente é inicializado
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.service.buscarPorId(parseInt(id!)).subscribe((pensamento) => {
       this.pensamento = pensamento;
     });
   }
-
+//Manipula a resposta do modal de confirmação
   handleConfirmacao(confirmado: boolean) {
     if (confirmado) {
       this.excluirPensamento();
     }
     this.modalAberto = false;
   }
-
+  
+  //Verifica se há um ID válido
   excluirPensamento() {
     if(this.pensamento.id) {
       this.service.excluir(this.pensamento.id).subscribe(() => {

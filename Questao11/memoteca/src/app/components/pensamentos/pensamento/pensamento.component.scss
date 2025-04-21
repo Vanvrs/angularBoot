@@ -1,4 +1,4 @@
-.acoes {
+ .acoes {
     display: flex;
     justify-content: flex-end
   }
@@ -102,6 +102,7 @@
             padding: 0.5rem;
             border-radius: 4px;
             transition: background-color 0.2s;
+            
 
             &:hover {
                 background-color: #f0f0f0;
@@ -115,7 +116,6 @@
     }
 }
 
-/* Estilos específicos para cada modelo se necessário */
 .modelo-1 {
     border-left: 4px solid #FF5733;
 }
@@ -221,12 +221,12 @@
   }
 }
 
-/* Estilos específicos para cada modelo */
+
 .modelo-1 {
   border-left: 4px solid #F7B733;
 
   .modelo-icon {
-    /* Estilo específico para modelo 1 */
+
   }
 }
 
@@ -234,7 +234,7 @@
   border-left: 4px solid #4ABDAC;
 
   .modelo-icon {
-    /* Estilo específico para modelo 2 */
+
   }
 }
 
@@ -242,7 +242,7 @@
   border-left: 4px solid #FC4A1A;
 
   .modelo-icon {
-    /* Estilo específico para modelo 3 */
+
   }
 }
 .pensamento-card {
@@ -301,3 +301,4 @@
     gap: 8px;
   }
 }
+

@@ -12,6 +12,7 @@ export class CriarPensamentoComponent implements OnInit {
   formulario!: FormGroup;
   carregando: boolean = false;
 
+  //Injeta dependências de service, router e formBuilder para criação de forms reativos
   constructor(
     private service: PensamentoService,
     private router: Router,
@@ -21,7 +22,7 @@ export class CriarPensamentoComponent implements OnInit {
   ngOnInit(): void {
     this.inicializarFormulario();
   }
-
+//Cria o formulário reativo com criados no back
   inicializarFormulario() {
     this.formulario = this.formBuilder.group({
       pensamentoDoAutor: ['', Validators.compose([
@@ -36,19 +37,23 @@ export class CriarPensamentoComponent implements OnInit {
     });
   }
 
+  //Verifica se o formulário é válido
   criarPensamento() {
     if (this.formulario.valid && !this.carregando) {
       this.carregando = true;
 
+      //Converte o valor do modelo de string para número
       const modeloNumero = this.formulario.value.modelo === 'modelo1' ? 1 :
                          this.formulario.value.modelo === 'modelo2' ? 2 : 3;
 
+      //Cria pensamento com os dados do formulário
       const pensamento = {
         pensamentoDoAutor: this.formulario.value.pensamentoDoAutor,
         nomeAutor: this.formulario.value.nomeAutor,
         modelo: modeloNumero
       };
 
+      //Em caso de sucesso: direciona para a lista de pensamentos. Em caso de erro: exibe alerta e libera o botão
       this.service.criar(pensamento).subscribe({
         next: () => {
           this.router.navigate(['/listarPensamento']);

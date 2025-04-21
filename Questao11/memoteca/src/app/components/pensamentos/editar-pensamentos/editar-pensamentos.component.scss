@@ -1,10 +1,12 @@
- .acoes {
+  .acoes {
     display: flex;
     justify-content: center;
   }
 
   .botao {
     margin: 5px;
+    
+
   }
 
   .editar-pensamentos {
@@ -142,7 +144,7 @@
   margin: 5px;
   width: 200px;
 }
-/* src/app/components/pensamentos/editar-pensamentos/editar-pensamentos.component.scss */
+
 .container.editar-pensamentos {
   max-width: 800px;
   margin: 2rem auto;

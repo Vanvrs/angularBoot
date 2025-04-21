@@ -1,4 +1,4 @@
-.acoes {
+ .acoes {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,13 +17,10 @@
 
   .criar-pensamentos form {
     background: #C4EDFF;
-
     border: none;
     border-radius: 20px;
-
     display: flex;
     flex-direction: column;
-
     padding: 2rem;
   }
 
@@ -147,3 +144,5 @@
     margin-top: 70px;
     width: 200px;
   }
+
+

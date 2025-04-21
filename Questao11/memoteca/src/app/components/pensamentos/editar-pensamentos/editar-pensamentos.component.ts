@@ -1,70 +1,3 @@
-/*import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { PensamentoService } from '../../../services/pensamento.service';
-import { Component, OnInit } from '@angular/core';
-import { Pensamento } from '../pensamento';
-
-@Component({
-  selector: 'app-editar-pensamentos',
-  templateUrl: './editar-pensamentos.component.html',
-
-})
-export class EditarPensamentosComponent implements OnInit {
-  formulario!: FormGroup;
-
-  constructor(
-    private service: PensamentoService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder
-  ) { }
-
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.service.buscarPorId(parseInt(id!)).subscribe((pensamento) => {
-      this.formulario = this.formBuilder.group({
-        id: [pensamento.id],
-        pensamentoDoAutor: [pensamento.pensamentoDoAutor, Validators.compose([
-          Validators.required,
-          Validators.pattern(/(.|\s)*\S(.|\s)*/ /*)
-        ])],
-        nomeAutor: [pensamento.nomeAutor, Validators.compose([
-          Validators.required,
-          Validators.minLength(3)
-        ])],
-        modelo: [pensamento.modelo.toString()]
-      });
-    });
-  }
-
-  editarPensamento() {
-    if (this.formulario.valid) {
-      const pensamento: Pensamento = {
-        id: this.formulario.value.id,
-        pensamentoDoAutor: this.formulario.value.pensamentoDoAutor,
-        nomeAutor: this.formulario.value.nomeAutor,
-        modelo: parseInt(this.formulario.value.modelo)
-      };
-
-      this.service.editar(pensamento).subscribe(() => {
-        this.router.navigate(['/listarPensamento']);
-      });
-    }
-  }
-
-
-  cancelar() {
-    this.router.navigate(['/listarPensamento']);
-  }
-
-  habilitarBotao(): string {
-    return this.formulario.valid ? 'botao' : 'botao__desabilitado';
-  }
-}
-*/
-
-
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -76,15 +9,18 @@ import { Pensamento } from '../pensamento';
   templateUrl: './editar-pensamentos.component.html',
   styleUrls: ['./editar-pensamentos.component.scss']
 })
+//Grupo de controles do formulário
 export class EditarPensamentosComponent implements OnInit {
   formulario!: FormGroup;
   carregando: boolean = false;
+  //Array com opções de modelos disponíveis
   modelos = [
     { valor: '1', label: 'Modelo 1' },
     { valor: '2', label: 'Modelo 2' },
     { valor: '3', label: 'Modelo 3' }
   ];
 
+  //Injeta serviços essenciais: service, router, route e formuilder
   constructor(
     private service: PensamentoService,
     private router: Router,
@@ -92,11 +28,13 @@ export class EditarPensamentosComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
 
+  //Inicializa o formulário e carrega o pensamento a ser editado
   ngOnInit(): void {
     this.inicializarFormulario();
     this.carregarPensamento();
   }
 
+  //Formulario reativo: iniciando em 0, validaçoes de obrigatoriedade, contúedo e tamanho minimo
   inicializarFormulario() {
     this.formulario = this.formBuilder.group({
       id: [0],
@@ -108,10 +46,11 @@ export class EditarPensamentosComponent implements OnInit {
         Validators.required,
         Validators.minLength(3)
       ])],
-      modelo: ['1']
+      modelo: ['1'] //valor padrão
     });
   }
 
+  //obtém id da rota, busca o pensamento por id e preenche o form com os dados retornados
   carregarPensamento() {
     const id = this.route.snapshot.paramMap.get('id');
     this.service.buscarPorId(parseInt(id!)).subscribe(pensamento => {
@@ -124,7 +63,8 @@ export class EditarPensamentosComponent implements OnInit {
     });
   }
 
-  // Implementação do método salvarEdicao()
+  //Implementação do método salvarEdicao()
+  //verifica se o formulário é válido
   salvarEdicao() {
     console.log('Salvando edição...');
 
@@ -135,7 +75,7 @@ export class EditarPensamentosComponent implements OnInit {
         id: this.formulario.value.id,
         pensamentoDoAutor: this.formulario.value.pensamentoDoAutor,
         nomeAutor: this.formulario.value.nomeAutor,
-        modelo: parseInt(this.formulario.value.modelo)
+        modelo: parseInt(this.formulario.value.modelo)//converte os dados
       };
 
       console.log('Dados para salvar:', pensamento);
