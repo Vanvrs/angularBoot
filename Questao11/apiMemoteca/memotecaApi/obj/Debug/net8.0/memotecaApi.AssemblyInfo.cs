@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("memotecaApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b2d4aad3660637261f79c418400a55181ce587a0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+217866b61d541d5e67dc4d947cbfd5289245ad31")]
 [assembly: System.Reflection.AssemblyProductAttribute("memotecaApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("memotecaApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

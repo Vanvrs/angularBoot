@@ -5,14 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
-import { RodapeComponent } from './components/rodape/rodape.component';
-import { CriarPensamentoComponent } from './components/pensamentos/criar-pensamento/criar-pensamento.component';
-import { ListarPensamentoComponent } from './components/pensamentos/listar-pensamento/listar-pensamento.component';
-import { PensamentoComponent } from './components/pensamentos/pensamento/pensamento.component';
-import { ExcluirPensamentoComponent } from './components/pensamentos/excluir-pensamento/excluir-pensamento.component';
-import { EditarPensamentosComponent } from './components/pensamentos/editar-pensamentos/editar-pensamentos.component';
-import { ModalConfirmacaoComponent } from './components/pensamentos/modal/modal-confirmacao.component';
+import { CabecalhoComponent } from './shared/components/cabecalho/cabecalho.component';
+import { RodapeComponent } from './shared/components/rodape/rodape.component';
+import { CriarPensamentoComponent } from './pages/pensamentos/criar-pensamento/criar-pensamento.component';
+import { ListarPensamentoComponent } from './pages/pensamentos/listar-pensamento/listar-pensamento.component';
+import { PensamentoComponent } from './pages/pensamentos/pensamento/pensamento.component';
+import { ExcluirPensamentoComponent } from './pages/pensamentos/excluir-pensamento/excluir-pensamento.component';
+import { EditarPensamentosComponent } from './pages/pensamentos/editar-pensamentos/editar-pensamentos.component';
+import { ModalConfirmacaoComponent } from './pages/pensamentos/modal/modal-confirmacao.component';
 
 @NgModule({
   declarations: [

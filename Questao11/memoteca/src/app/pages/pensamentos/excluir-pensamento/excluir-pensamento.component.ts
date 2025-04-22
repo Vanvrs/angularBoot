@@ -2,8 +2,10 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PensamentoService } from '../../../services/pensamento.service';
-import { Pensamento } from '../pensamento';
+//import { PensamentoService } from '../../../services/pensamento.service';
+import { PensamentoService } from 'src/app/shared/services/pensamento.service';
+import { Pensamento } from 'src/app/shared/interfaces/pensamento';
+//import { Pensamento } from '../pensamento';
 
 @Component({
   selector: 'app-excluir-pensamento',
@@ -39,7 +41,7 @@ export class ExcluirPensamentoComponent implements OnInit {
     }
     this.modalAberto = false;
   }
-  
+
   //Verifica se há um ID válido
   excluirPensamento() {
     if(this.pensamento.id) {

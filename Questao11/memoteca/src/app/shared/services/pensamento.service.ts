@@ -2,7 +2,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
-import { Pensamento } from '../components/pensamentos/pensamento';
+import { Pensamento } from '../interfaces/pensamento';
 
 @Injectable({
   providedIn: 'root'
@@ -49,8 +49,6 @@ export class PensamentoService {
       })
     );
   }
-
-
 
     editar(pensamento: Pensamento): Observable<Pensamento> {
       const url = `${this.API}/${pensamento.id}`;

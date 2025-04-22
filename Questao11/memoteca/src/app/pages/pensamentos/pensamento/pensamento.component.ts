@@ -1,6 +1,7 @@
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Pensamento } from '../pensamento';
+//import { Pensamento } from '../pensamento';
+import { Pensamento } from 'src/app/shared/interfaces/pensamento';
 
 @Component({
   selector: 'app-pensamento',
