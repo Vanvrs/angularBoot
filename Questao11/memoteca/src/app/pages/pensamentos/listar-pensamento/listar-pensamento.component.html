@@ -1,32 +1,4 @@
-<!-- <div class="mural-container">
-  <h1 class="mural-title">Meu Mural</h1>
 
-  <div class="new-thought-container">
-    <button class="new-thought-btn" routerLink="/criarPensamento">
-      Novo Pensamento
-    </button>
-  </div>
-
-  <div class="thoughts-container">
-    <app-pensamento
-      *ngFor="let pensamento of listaPensamentos"
-      [pensamento]="pensamento"
-      (onExcluir)="pensamento.id && prepararExclusao(pensamento.id)"
-      (onEditar)="pensamento.id && editarPensamento(pensamento.id)"
-      class="thought-card">
-    </app-pensamento>
-  </div>
-
-  <app-modal-confirmacao
-    [aberto]="modalAberto"
-    titulo="Confirmar Exclusão"
-    mensagem="Você tem certeza que deseja excluir este pensamento permanentemente?"
-    (confirmado)="confirmarExclusao($event)">
-  </app-modal-confirmacao>
-</div>
- -->
-
- <!-- listar-pensamento.component.html -->
 
 <div class="mural-container">
   <h1 class="mural-title">Meu Mural</h1>

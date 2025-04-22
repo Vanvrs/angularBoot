@@ -37,20 +37,6 @@
     }
   }
 
-  @media (min-width: 400px) {
-    .modal-container {
-      .modal-actions {
-        flex-direction: row;
-        justify-content: flex-end;
-
-        button {
-          width: auto;
-        }
-      }
-    }
-  }
-}
-
 .excluir-container {
   width: 100%;
   padding: 1.5rem;
@@ -78,4 +64,17 @@
       }
     }
   }
+}
+@media (min-width: 400px) {
+  .modal-container {
+    .modal-actions {
+      flex-direction: row;
+      justify-content: flex-end;
+
+      button {
+        width: auto;
+      }
+    }
+  }
+}
 }
